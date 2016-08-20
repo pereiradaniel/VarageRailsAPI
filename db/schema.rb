@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820185636) do
+ActiveRecord::Schema.define(version: 20160820201053) do
+
+  create_table "items", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "price"
+    t.integer  "user_id"
+    t.integer  "status_id"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id", unique: true
+    t.index ["status_id"], name: "index_items_on_status_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",      null: false
