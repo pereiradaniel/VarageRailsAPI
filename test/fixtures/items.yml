@@ -1,9 +1,9 @@
 <% 3.times do |x| %>
-<% 5.times do |y|
+<% 5.times do |y| %>
 item_<%= x %>_<%= y %>:
   title: <%= "USER No.#{x} ITEM No.#{y}" %>
   description: <%= "DESCRIPTION U#{x}/#{y}" %>
   price: <%= 100.50 %>
-  user: <%= "user_#{x}"
+  user: <%= "user_#{x}" %>
 <% end %>
 <% end %>

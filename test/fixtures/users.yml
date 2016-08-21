@@ -1,5 +1,5 @@
 <% 3.times do |x| %>
-user_<%= x %>
+user_<%= x %>:
   name: <%= "USER NO.{x}" %>
   password_digest: <%= BCrypt::Password.create('password') %>
   token: <%= SecureRandom.base58(24) %>
