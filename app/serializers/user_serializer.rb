@@ -3,4 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 	attributes :id, :name, :created_at
 
 	has_many :items
+
+	# Provide link in JSON object
+	link(:self) { user_url(object) }
 end
