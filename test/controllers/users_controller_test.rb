@@ -5,8 +5,8 @@ class UsersControllerTest < ActionController::TestCase
 	test "Gets list of users" do
 		get :index
 		assert_response :success
-		assert_equal response.content_type, 'application/vnd.api+json'		
-		jdata = JSON.parse.response.body
+		assert_equal response.content_type, 'application/vnd.api+json'
+		jdata = JSON.parse response.body
 		assert_equal 3, jdata['data'].length
 		assert_equal jdata['data'][0]['type'], 'users'
 	end
