@@ -30,4 +30,59 @@ class UsersControllerTest < ActionController::TestCase
 		assert_equal '/data/attributes/id', jdata['errors'][0]['source']['pointer']
 	end
 
+	test "Incorrect content-type on user create throws error" do
+		post :create, params: {}
+		assert_response 406
+	end
+
+	test "No X-API-KEY on user create throws error" do
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		post :create, params: {}
+		assert_response 403
+	end
+
+	test "Invalid type in JSON data on user create throws error" do
+		user = users('user_1')
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		@request.headers["X-Api-Key"] = user.token
+		post :create, params: { data { type: 'posts' }}
+		assert_response 409
+	end
+
+	test "Invalid data on user create throws error" do
+		user = users('user_1')
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		@request.headers["X-Api-Key"] = user.token
+		post :create, params: {
+										data: {
+											type: 'users',
+											attributes: {
+												name: nil,
+												password: nil,
+												password_confirmation: nil }}}
+		assert_response 422
+		jdata = JSON.parse response.body
+		pointers = jdata['errors'].collect { |e|
+			e['source']['pointer'].split('/').last
+		}.sort
+		assert_equal ['name', 'password'], pointers
+	end
+
+	test "New user created if data is valid" do
+		user = users('user_1')
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		@request.headers["X-Api-Key"] = user.token
+		post :create, params: {
+										data: {
+											type: 'users',
+											attributes: {
+												name: "TEST USER",
+												password: "PASSWORD",
+												password_confirmation: "PASSWORD" }}}
+		assert_response 201
+		jdata = JSON.parse response.body
+		assert_equal 'TEST USER',
+									jdata['data']['attributes']['name']
+	end
+
 end
