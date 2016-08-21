@@ -45,7 +45,7 @@ class UsersControllerTest < ActionController::TestCase
 		user = users('user_1')
 		@request.headers["Content-Type"] = 'application/vnd.api+json'
 		@request.headers["X-Api-Key"] = user.token
-		post :create, params: { data { type: 'posts' }}
+		post :create, params: { data: { type: 'posts' }}
 		assert_response 409
 	end
 
