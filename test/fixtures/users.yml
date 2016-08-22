@@ -1,6 +1,6 @@
 <% 3.times do |x| %>
 user_<%= x %>:
-  name: <%= "USER NO.#{x}" %>
+  name: <%= "User Nr#{x}" %>
   password_digest: <%= BCrypt::Password.create('password') %>
   token: <%= SecureRandom.base58(24) %>
   latitude: <%= 43.653226 %>
