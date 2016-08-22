@@ -25,7 +25,7 @@ category_array.length.times do |x|
 end
 
 5.times do |x|
-x+=1
+	x+=1
 10.times do |y|
 	y+=1
 	Item.create({
@@ -34,5 +34,8 @@ x+=1
 		price: 100.50,
 		user_id: x
 		})
+	3.times do
+		Item.last.categories << Category.find(1 + rand(category_array.length))
+	end
 end
 end
