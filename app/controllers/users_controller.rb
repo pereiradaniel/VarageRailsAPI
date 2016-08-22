@@ -21,6 +21,14 @@ class UsersController < ApplicationController
 		render json: @user
 	end
 
+	def update
+		if@user.update_attributes(user_params)
+			render json: @user, status: :ok
+		else
+			render_error(@user, :unprocessable_entity)
+		end
+	end
+
 	private
 	def set_user
 		begin

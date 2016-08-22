@@ -84,4 +84,19 @@ class UsersControllerTest < ActionController::TestCase
 									jdata['data']['attributes']['name']
 	end
 
+	test "User is updated if data is valid" do
+	user = users('user_1')
+    @request.headers["Content-Type"] = 'application/vnd.api+json'
+    @request.headers["X-Api-Key"] = user.token
+    patch :update, params: {
+                     id: user.id,
+                     data: {
+                       id: user.id,
+                       type: 'users',
+                       attributes: { name: 'User Nr1 UPDATED' }}}
+    assert_response 200
+    jdata = JSON.parse response.body
+    assert_equal 'User Nr1 UPDATED', jdata['data']['attributes']['name']
+	end
+
 end
