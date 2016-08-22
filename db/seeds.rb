@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |x|
+	x+=1
 	User.create({
 		name: "User Nr#{x}",
 		password_digest: BCrypt::Password.create('password'),
@@ -17,7 +18,9 @@
 end
 
 5.times do |x|
+x+=1
 10.times do |y|
+	y+=1
 	Item.create({
 		title: "User Nr#{x} Item Nr#{y}",
 		description: "Description U#{x}/#{y}",
