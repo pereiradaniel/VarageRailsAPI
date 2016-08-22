@@ -17,7 +17,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     jdata = JSON.parse response.body
     assert_equal user.id.to_s, jdata['data']['id']
-    assert_equal user.full_name, jdata['data']['attributes']['full-name']
+    assert_equal user.name, jdata['data']['attributes']['name']
     assert_equal user_url(user, { host: "localhost", port: 3000 }), jdata['data']['links']['self']
   end
 
