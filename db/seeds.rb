@@ -17,6 +17,13 @@
 		})
 end
 
+category_array = ["Car", "Clothing", "Electronic", "Books", "Other"]
+category_array.length.times do |x|
+	Category.create({
+		category_name: category_array[x]
+		})
+end
+
 5.times do |x|
 x+=1
 10.times do |y|
