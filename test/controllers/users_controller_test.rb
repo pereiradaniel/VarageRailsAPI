@@ -99,4 +99,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal 'User Nr1 UPDATED', jdata['data']['attributes']['name']
 	end
 
+	test "Deletes user" do
+		user = users('user_1')
+		ucount = User.count - 1
+		@request.headers["X-Api-Key"] = user.token
+		delete :destroy, params: { id: users('user_2').id}
+		assert_response 204
+		assert_equal ucount, User.count
+	end
+
 end

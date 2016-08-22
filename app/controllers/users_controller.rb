@@ -29,6 +29,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def destroy
+		@user.destroy
+		head 204
+	end
+
 	private
 	def set_user
 		begin
