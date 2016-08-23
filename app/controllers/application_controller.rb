@@ -32,9 +32,9 @@ class ApplicationController < ActionController::API
   end
 
   def validate_item
-    token = request.headers["X-Api-Key"]
-    head 403 and return unless token
-    item = Item.find_by token: token
+    request_item = request.headers["request_item"]
+    head 403 and return unless request_item
+    item = Item.find_by id: request_item.id
     head 403 and return unless item
   end
 

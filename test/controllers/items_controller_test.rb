@@ -39,5 +39,13 @@ class ItemsControllerTest < ActionController::TestCase
 		assert_response 403
 	end
 
+	test "Invalid type in JSON data on item create throws error" do
+		request_item = items('item_1_2')
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		@request.headers["request_item"] = request_item
+		post :create, params: { data: { type: 'posts' }}
+		assert_response 409
+	end
+
 
 end
