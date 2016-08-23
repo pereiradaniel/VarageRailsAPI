@@ -31,6 +31,13 @@ class ApplicationController < ActionController::API
     head 403 and return unless user
   end
 
+  def validate_item
+    token = request.headers["X-Api-Key"]
+    head 403 and return unless token
+    item = Item.find_by token: token
+    head 403 and return unless item
+  end
+
   def render_error(resource, status)
     render json: resource, status: status, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
   end

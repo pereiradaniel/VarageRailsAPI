@@ -33,4 +33,11 @@ class ItemsControllerTest < ActionController::TestCase
 		assert_response 406
 	end
 
+	test "No X-API-KEY on item create throws error" do
+		@request.headers["Content-Type"] = 'application/vnd.api+json'
+		post :create, params: {}
+		assert_response 403
+	end
+
+
 end
