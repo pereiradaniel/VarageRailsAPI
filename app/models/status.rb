@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-	has_and_belongs_to_many :items
+	has_many :items
 end

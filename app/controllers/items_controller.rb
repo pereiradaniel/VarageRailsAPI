@@ -21,6 +21,11 @@ class ItemsController < ApplicationController
 		render json: @item
 	end
 
+	def show_with_status_by_user
+		get_items_with_status_by_user
+		render json: @items
+	end
+
 	private
 	def set_item
 		begin
@@ -31,6 +36,11 @@ class ItemsController < ApplicationController
 			render_error(item, 404) and return
 		end
 	end
+
+	def get_items_with_status_by_user
+		@items = Item.where("user_id = ? AND status_id = ?", params[:user_id], params[:status_id])
+	end
+
   def item_params
     ActiveModelSerializers::Deserialization.jsonapi_parse(params)
   end

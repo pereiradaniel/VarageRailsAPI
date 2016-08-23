@@ -39,10 +39,9 @@ end
 		title: "User Nr#{x} Item Nr#{y}",
 		description: "Description U#{x}/#{y}",
 		price: 100.50,
-		user_id: x
+		user_id: x,
+		status_id: Status.find(1 + rand(status_array.length)).id
 		})
-	# Add a random status to an item
-	Item.last.statuses << Status.find(1 + rand(status_array.length))
 	# Give the item 3 random categories
 	3.times do
 		Item.last.categories << Category.find(1 + rand(category_array.length))
