@@ -46,6 +46,4 @@ class ItemsControllerTest < ActionController::TestCase
 		post :create, params: { data: { type: 'posts' }}
 		assert_response 409
 	end
-
-
 end
