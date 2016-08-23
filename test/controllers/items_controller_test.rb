@@ -20,4 +20,11 @@ class ItemsControllerTest < ActionController::TestCase
     assert_equal item.title, jdata['data']['attributes']['title']
   end
 
+	test "JSON:API error block when item id is invalid" do
+		get :show, params: { id: "z" }
+		assert_response	404
+		jdata = JSON.parse response.body
+		assert_equal "Wrong ID provided", jdata['errors'][0]['detail']
+		assert_equal '/data/attributes/id', jdata['errors'][0]['source']['pointer']
+	end
 end

@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
 		rescue ActiveRecord::RecordNotFound
 			item = Item.new
 			item.errors.add(:id, "Wrong ID provided")
-			render_error(user, 404) and return
+			render_error(item, 404) and return
 		end
 	end
   def item_params
