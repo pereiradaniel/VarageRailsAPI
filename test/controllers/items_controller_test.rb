@@ -27,4 +27,10 @@ class ItemsControllerTest < ActionController::TestCase
 		assert_equal "Wrong ID provided", jdata['errors'][0]['detail']
 		assert_equal '/data/attributes/id', jdata['errors'][0]['source']['pointer']
 	end
+
+	test "Incorrect content-type on item create throws error" do
+		post :create, params: {}
+		assert_response 406
+	end
+
 end

@@ -1,5 +1,16 @@
 class ItemsController < ApplicationController
 	before_action :set_item, only: [:show, :update, :destroy]
+	before_action :validate_item, only: [:create, :update, :destroy]
+	before_action :validate_type, only: [:create, :update]
+
+	def create
+		item = Item.new(item_params)
+		if item.save
+			render json: item, status: :created
+		else
+			render_error(item, :unprocessable_entity)
+		end
+	end
 
 	def index
 		items = Item.all
