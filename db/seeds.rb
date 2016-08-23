@@ -24,6 +24,13 @@ category_array.length.times do |x|
 		})
 end
 
+status_array = ["Available", "Sold", "Banned"]
+status_array.length.times do |x|
+	Status.create({
+		status_name: status_array[x]
+		})
+end
+
 5.times do |x|
 	x+=1
 10.times do |y|
@@ -34,6 +41,9 @@ end
 		price: 100.50,
 		user_id: x
 		})
+	# Add a random status to an item
+	Item.last.statuses << Status.find(1 + rand(status_array.length))
+	# Give the item 3 random categories
 	3.times do
 		Item.last.categories << Category.find(1 + rand(category_array.length))
 	end
