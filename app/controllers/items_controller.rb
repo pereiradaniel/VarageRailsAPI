@@ -29,7 +29,11 @@ class ItemsController < ApplicationController
 	private
 	def set_item
 		begin
-			@item = Item.find params[:id]
+			# Detect if item is banned
+			item = Item.find params[:id]
+			if item.status_id != 3
+				@item = item
+			end
 		rescue ActiveRecord::RecordNotFound
 			item = Item.new
 			item.errors.add(:id, "Wrong ID provided")
