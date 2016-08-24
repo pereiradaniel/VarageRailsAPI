@@ -6,4 +6,8 @@ class UserSerializer < ActiveModel::Serializer
 
 	# Provide link in JSON object
 	link(:self) { user_url(object) }
+
+	def items
+		object.items.where.not(status_id: 3)
+	end
 end

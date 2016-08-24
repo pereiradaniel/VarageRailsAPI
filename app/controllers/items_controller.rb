@@ -38,7 +38,11 @@ class ItemsController < ApplicationController
 	end
 
 	def get_items_with_status_by_user
-		@items = Item.where("user_id = ? AND status_id = ?", params[:user_id], params[:status_id])
+		# Detects if status = "banned", returns null
+		if params[:status_id] != "3"
+			@items = Item.where("user_id = ? AND status_id = ?", params[:user_id], params[:status_id])
+		else
+		end
 	end
 
   def item_params
