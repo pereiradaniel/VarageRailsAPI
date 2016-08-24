@@ -10,7 +10,9 @@ Requirements:
 
 # Basic Instructions
 
-* Run a Rails Server and visit localhost:3000 in the browser
+* Run '$ bundle install'
+* Run '$ Rails db:migrate db:seed' to migrate and seed db
+* Run '$ Rails s' to start a Rails Server to make requests from the browser
 
 
 # Making Requests
