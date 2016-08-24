@@ -26,6 +26,7 @@ Details of one item:
 
 * localhost:3000/items/:item id
 * Item id: There are 50 items seeded in the database
+* Banned item info is restricted by item controller
 
 A users sold items:
 
