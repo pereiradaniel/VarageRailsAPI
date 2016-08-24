@@ -5,7 +5,7 @@ Requirements:
 
 # Introduction
 
-	This is a Rails 5 API only app.  There are some tests written for users and items
+	This is a Rails 5 API only app.  There are some tests written for users and items.  Make sure to run bundle install to get all gems before running a server!
 
 
 # Basic Instructions
@@ -33,6 +33,13 @@ A users sold items:
 * localhost:3000/items/:user id/:status id
 * User id: There are 5 users seeded in the database
 * Status id: 1 for 'Available', 2 for 'Sold', 3 is 'Banned'
+
+
+Items in a category:
+
+* http://localhost:3000/itemsbycategory/1
+* Category id: There are 5 categories seeded in the database.
+* 1 = "Car", 2 = "Clothing", 3 = "Electronic", 4 = "Books", 5 = "Other"
 
 
 # Run tests

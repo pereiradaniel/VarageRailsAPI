@@ -26,6 +26,11 @@ class ItemsController < ApplicationController
 		render json: @items
 	end
 
+	def show_items_in_a_category
+		get_items_in_a_category
+		render json: @items
+	end
+
 	private
 	def set_item
 		begin
@@ -47,6 +52,10 @@ class ItemsController < ApplicationController
 			@items = Item.where("user_id = ? AND status_id = ?", params[:user_id], params[:status_id])
 		else
 		end
+	end
+
+	def get_items_in_a_category
+		@items = Item.joins(:categories).where("categories.id = ?", params[:category_id])
 	end
 
   def item_params
